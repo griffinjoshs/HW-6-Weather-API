@@ -1,0 +1,22 @@
+body {
+  position: relative;
+  border: 3px solid red;
+}
+
+header {
+    font-size: 50px;
+    text-align: center;
+    background-color: blanchedalmond;
+}
+
+#form {
+
+}
+
+#today {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#today:hover {
+    box-shadow: 8px 16px 0 rgba(0,0,0,0.2);
+}
