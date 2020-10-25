@@ -7,8 +7,6 @@ $(document).ready(function () {
 
 
     $("#search-button").on("click", function () {
-        //var location = $("#search").val()
-        //var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&appid=" + APIKey;
         var city = $("#city-value").val()
 
         console.log(city)
@@ -17,28 +15,31 @@ $(document).ready(function () {
         
         console.log(queryURL)
 
-        UVQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid=b6d12dfce99afcda449f11a91371bcfd"
-
         $.ajax({
             url: queryURL,
             method: "GET",
+            
 
-        }).then(function (response) {
+        }).then(function(response) {
             console.log(response)
-            // All Code That will add data th the html will go here
-            var today = $("#Today");
-            today.append('temperature: ' + response.main.temp)
-            today.append('humidity:' + response.main.humidity)
-            today.append('wind:' + response.wind.speed)
+            // All Code That will add data to the html will go here
+            //city = $("#location");
+            var temp = $("#temp");
+            var humidity = $("#humidity");
+            var wind = $("#wind");
+            var location = $("#location");
+
+            // Convert the temp to fahrenheit
+            //var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+            location.append(city)
+            temp.append('temperature: ' + response.main.temp)
+            humidity.append('humidity: ' + response.main.humidity)
+            wind.append('wind: ' + response.wind.speed)
+
         })
-
-        }).then(function (response) {
-            console.log(response)
     })
 })
-
-
-
 
 // Create CODE HERE to transfer content to HTML
 //$("#location").html(response)
