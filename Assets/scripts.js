@@ -12,15 +12,15 @@ $(document).ready(function () {
         console.log(city)
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b6d12dfce99afcda449f11a91371bcfd";
-        
+
         console.log(queryURL)
 
         $.ajax({
             url: queryURL,
             method: "GET",
-            
 
-        }).then(function(response) {
+
+        }).then(function (response) {
             console.log(response)
             // All Code That will add data to the html will go here
             //city = $("#location");
@@ -37,6 +37,24 @@ $(document).ready(function () {
             humidity.append('humidity: ' + response.main.humidity)
             wind.append('wind: ' + response.wind.speed)
 
+            var lat = response.coord.lat
+
+            var lon = response.coord.lon
+
+            var UVqueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=b6d12dfce99afcda449f11a91371bcfd"
+
+            console.log(UVqueryURL)
+
+            $.ajax({
+                url: UVqueryURL,
+                method: "GET"
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+            // All Code That will add data th the html will go here
+            var uv = $("#uv");
+            uv.append(response.value)
         })
     })
 })

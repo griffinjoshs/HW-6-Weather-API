@@ -9,8 +9,14 @@ header {
     background-color: blanchedalmond;
 }
 
-#form {
+#city-value {
+    height: 30px;
+    width: 50%;
+    display: flex;
+}
 
+#search-button {
+   display: flex;
 }
 
 #today {
@@ -19,4 +25,8 @@ header {
 
 #today:hover {
     box-shadow: 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#location {
+    font-weight: bold;
 }
