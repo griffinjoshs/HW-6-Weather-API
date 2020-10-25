@@ -51,10 +51,11 @@ $(document).ready(function () {
             })
                 .then(function (response) {
                     console.log(response);
+                    // All Code That will add data th the html will go here
+                    var uv = $("#uv");
+                    uv.append('uv: ' + response.value)
                 })
-            // All Code That will add data th the html will go here
-            var uv = $("#uv");
-            uv.append(response.value)
+
         })
     })
 })
