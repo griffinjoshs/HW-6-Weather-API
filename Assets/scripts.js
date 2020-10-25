@@ -28,12 +28,11 @@ $(document).ready(function () {
             var temp = $("#temp");
             var humidity = $("#humidity");
             var wind = $("#wind");
-
             // Convert the temp to fahrenheit
-            //var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+            var tempF = ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2);
 
             location.append(city)
-            temp.append('temperature: ' + response.main.temp)
+            temp.append('temperature: ' + tempF)
             humidity.append('humidity: ' + response.main.humidity)
             wind.append('wind: ' + response.wind.speed)
 
