@@ -24,10 +24,10 @@ $(document).ready(function () {
             console.log(response)
             // All Code That will add data to the html will go here
             //city = $("#location");
+            var location = $("#location");
             var temp = $("#temp");
             var humidity = $("#humidity");
             var wind = $("#wind");
-            var location = $("#location");
 
             // Convert the temp to fahrenheit
             //var tempF = (response.main.temp - 273.15) * 1.80 + 32;
