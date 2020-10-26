@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         $.ajax({
             url: queryURL,
-            method: "GET",
+            method: "GET"
 
 
         }).then(function (response) {
@@ -46,24 +46,34 @@ $(document).ready(function () {
             })
                 .then(function (response) {
                     console.log(response);
-                    // All Code That will add data th the html will go here
+                    // All Code That will add data to the html will go here
                     var uv = $("#uv");
                     uv.append('uv index: ' + response.value)
                 })
             
             // 5 day forecast api declaration
             var forecast5queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=b6d12dfce99afcda449f11a91371bcfd"
-           
+                    console.log(forecast5queryURL);
               // 5 day forecast ajax
               $.ajax({
                 url: forecast5queryURL,
                 method: "GET"
 
             }).then(function (response) {
-                    console.log(response);
+                console.log(response);
+                // All Code That will add data to the html will go here
+                var day1 = $("#day1");
+                day1.append('Day 1: ' + response.daily[0].temp.day)
             })
 
-           
+            // 5 day forcast for loop
+            for (var i = 0; i < response.list; i++){
+                var forecast = response.list[i]
+                forecast.temp.day
+                forecast.humidity
+                forecast.wind_speed
+                forecast.uvi
+            }
 
         })
     })
