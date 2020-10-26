@@ -1,10 +1,6 @@
 var APIKey = "b6d12dfce99afcda449f11a91371bcfd";
 
-
-
 $(document).ready(function () {
-
-
 
     $("#search-button").on("click", function () {
         var city = $("#city-value").val()
@@ -52,8 +48,22 @@ $(document).ready(function () {
                     console.log(response);
                     // All Code That will add data th the html will go here
                     var uv = $("#uv");
-                    uv.append('uv: ' + response.value)
+                    uv.append('uv index: ' + response.value)
                 })
+            
+            // 5 day forecast api declaration
+            var forecast5queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=b6d12dfce99afcda449f11a91371bcfd"
+           
+              // 5 day forecast ajax
+              $.ajax({
+                url: forecast5queryURL,
+                method: "GET"
+
+            }).then(function (response) {
+                    console.log(response);
+            })
+
+           
 
         })
     })
