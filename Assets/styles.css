@@ -1,12 +1,17 @@
 body {
   position: relative;
-  border: 3px solid red;
+}
+
+#form {
+    background-color: rgb(172, 218, 231)!important;
+    
 }
 
 header {
+    color: white;
     font-size: 50px;
     text-align: center;
-    background-color: blanchedalmond;
+    background-color:black;
 }
 
 #city-value {
@@ -29,4 +34,49 @@ header {
 
 #location {
     font-weight: bold;
+}
+
+#day1 {
+    font-size: 15px;
+}
+
+#day2 {
+    font-size: 15px;
+}
+
+#day3 {
+    font-size: 15px;
+}
+
+#day4 {
+    font-size: 15px;
+}
+
+#day5 {
+    font-size: 15px;
+}
+
+#day1temp {
+    font-size: 13px;
+}
+
+#day2temp {
+    font-size: 13px;
+}
+
+#day3temp {
+    font-size: 13px;
+}
+
+#day4temp {
+    font-size: 13px;
+}
+
+#day5temp {
+    font-size: 13px;
+}
+
+.col-md {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding-right: 5px;
 }
