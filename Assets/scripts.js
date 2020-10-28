@@ -1,11 +1,33 @@
 var APIKey = "b6d12dfce99afcda449f11a91371bcfd";
 
 $(document).ready(function () {
+    
+    var history = JSON.parse(localStorage.getItem("historylist")) || []
 
-    $("#search-button").on("click", function () {
-        var city = $("#city-value").val()
+    function displayHistory(){
+        var historyObject = $("#history")
+        historyObject.html("")
+        var panel = $("<ul>")
+        for (var i = 0; i < history.length; i++) {
+            var li = $("<li>")
+            var button = $("<button>")
+            button.text(history [i])
+            button.on("click", function(event){
+                searchWeather(event.target.innerText)
+            })
+            li.append(button)
+            panel.append(li)
+            historyObject.append(panel)
+        }
+    }
+    displayHistory()
 
-        console.log(city)
+    function searchWeather(city){
+        if(history.indexOf(city)=== -1){
+            history.push(city)
+            localStorage.setItem("historylist", JSON.stringify(history))
+            displayHistory()
+        }
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b6d12dfce99afcda449f11a91371bcfd";
 
@@ -28,10 +50,10 @@ $(document).ready(function () {
             var tempF = ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2);
             var currentDate = moment().format('l');
 
-            location.append(city + " " + currentDate)
-            temp.append('temperature: ' + tempF)
-            humidity.append('humidity: ' + response.main.humidity)
-            wind.append('wind: ' + response.wind.speed)
+            location.html(city + " " + currentDate)
+            temp.html('temperature: ' + tempF)
+            humidity.html('humidity: ' + response.main.humidity)
+            wind.html('wind: ' + response.wind.speed)
 
             var lat = response.coord.lat
 
@@ -49,7 +71,7 @@ $(document).ready(function () {
                     console.log(response);
                     // All Code That will add data to the html will go here
                     var uv = $("#uv");
-                    uv.append('uv index: ' + response.value)
+                    uv.html('uv index: ' + response.value)
                 })
 
             // 5 day forecast api declaration
@@ -99,20 +121,18 @@ $(document).ready(function () {
                     var currDate = moment().add(startMyForecast, "day");
                     currDate = String(currDate);
                     currDate = currDate.substr(0, 15);
-                    fiveDayForecast[i].day.append(currDate);
+                    fiveDayForecast[i].day.html(currDate);
+                    var tempF = ((response.daily[i].temp.day - 273.15) * 1.80 + 32).toFixed(2);
+                    fiveDayForecast[i].temp.html("temperature:" + tempF + "°F")
+                    fiveDayForecast[i].humidity.html("humidity:" + response.daily[i+1].humidity + "%")
                     startMyForecast++
                 }
 
-                var objCounter = 0;
+                
+                
+                    
 
-                //5 day forcast for loop
-                for (var i = 1; i < 6; i++) {
-                    // Convert the temp to fahrenheit
-                    var tempF = ((response.daily[i].temp.day - 273.15) * 1.80 + 32).toFixed(2);
-                    fiveDayForecast[objCounter].temp.append("temperature:" + tempF + "°F")
-                    fiveDayForecast[objCounter].humidity.append("humidity:" + response.daily[i].humidity + "%")
-
-                }
+                
 
                 // var date = new Date(response.daily[1].dt * 1000).toDateString();
                 // console.log('thedate', date)
@@ -121,11 +141,20 @@ $(document).ready(function () {
 
 
             })
+        })
+    }
+
+    $("#search-button").on("click", function () {
+        var city = $("#city-value").val()
+
+        console.log(city)
+        
+        searchWeather(city)
 
 
             //day1.append('Temp: ' + response.daily.temp.day)
 
-        })
+       
     })
 })
 
